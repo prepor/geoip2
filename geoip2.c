@@ -97,6 +97,7 @@ VALUE mGeoIP2_locate(int argc, VALUE *argv, VALUE self)
         if (result.found_entry)
         {
             locate_result = rb_hash_new();
+            rb_hash_aset(locate_result, rb_str_new2("geoname_id"), locate_by_path(&result, "city geoname_id", NULL));
             rb_hash_aset(locate_result, rb_str_new2("city"), locate_by_path(&result, "city names", lang));
             rb_hash_aset(locate_result, rb_str_new2("country"), locate_by_path(&result, "country names", lang));
             rb_hash_aset(locate_result, rb_str_new2("country_code"), locate_by_path(&result, "country iso_code", NULL));
